@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>天气系统测试</title>
+</head>
+<body>
+    <h1 th:text="${reportData.title}">天气情况</h1>
+    <select>
+        <option th:each="city : ${reportData.cityList}" th:text="${city.cityName}" th:value="${city.cityName}"
+        th:selected="${city.cityName eq reportData.cityName}">
+
+        </option>
+    </select>
+    <div>
+        <p>
+            城市：<span th:text="${reportData.report.data.city}"></span>
+            空气指数：<span th:text="${reportData.report.data.aqi}"></span>
+            温度：<span th:text="${reportData.report.data.wendu}"></span>
+            友情提示：<span th:text="${reportData.report.data.ganmao}"></span>
+        </p>
+        <p>
+            日期：<span th:text="${reportData.report.data.yesterday.date}"></span>
+        </p>
+        <p>
+            最高温度：<span th:text="${reportData.report.data.yesterday.high}"></span>
+            最低温度：<span th:text="${reportData.report.data.yesterday.low}"></span>
+            风向：<span th:text="${reportData.report.data.yesterday.fx}"></span>
+            风力：<span th:text="${reportData.report.data.yesterday.fl}"></span>
+            天气情况：<span th:text="${reportData.report.data.yesterday.type}"></span>
+        </p>
+    </div>
+    <div th:each="forecast : ${reportData.report.data.forecast}">
+        <p>
+            日期：<span th:text="${forecast.date}"></span>
+        </p>
+        <p>
+            最高温度：<span th:text="${forecast.high}"></span>
+            最低温度：<span th:text="${forecast.low}"></span>
+            风向：<span th:text="${forecast.fengxiang}"></span>
+            风力：<span th:text="${forecast.fengli}"></span>
+            天气情况：<span th:text="${forecast.type}"></span>
+        </p>
+    </div>
+
+</body>
+</html>

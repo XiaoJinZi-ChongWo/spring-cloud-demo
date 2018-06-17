@@ -1,0 +1,19 @@
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      deafultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: misco-weather-zuul-client
+zuul:
+  routes:
+    city:
+      path: /city/**
+      serviceId: misco-city-data-eureka
+    weather:
+      path: /weather/**
+      serviceId: misco-weather-api-feign
+
+
